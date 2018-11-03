@@ -1,37 +1,15 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import logo from './logo.svg';
 import './App.css';
-
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
-}
+import *as DiscData from './data';
 
 class Disc extends Component {
   render() {
-    const title = "Samantha";
     return (
       <div className="Disc">
-        <img src={logo} className="Disc-cover" alt="disc cover" />
-        <h2 className="Disc-title">{title}</h2>
+        {/* <img src={logo} className="Disc-cover" alt="disc cover" /> */}
+        <h2 className="Disc-title">{this.props.title}</h2>
         <ul className="Disc-info">
           <li className="Disc-type">Type: {this.props.type}</li>
           <li className="Disc-year">Year: {this.props.year}</li>
@@ -46,19 +24,40 @@ class Collection extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      discs: Array(5).fill(null)
+      discs: DiscData.collection
     };
+    console.log(DiscData.collection);
+    this.sort();
   }
 
-  renderDisc(i) {
-    return <Disc value={i} />;
+  renderDisc(disc) {
+    return <Disc key={disc.title} title={disc.title} type={disc.type} year={disc.year} genre={disc.genre} />;
   }
 
   render() {
-    <div>
-      {this.renderDisc(0)}
-    </div>
+    return (
+      <div className="Collection">
+        {this.state.discs.map((disc) =>
+            this.renderDisc(disc)
+        )}
+      </div>
+    );
+  }
+
+  sort(sortBy = "title") {
+    console.log(this.state.discs);
+    this.state.discs.sort((a, b) => {
+      let comparison = 0;
+      if (a[sortBy] > b[sortBy]) {
+        comparison = 1;
+      } else if (a[sortBy] < b[sortBy]) {
+        comparison = -1;
+      }
+      return comparison;
+    });
+    console.log(this.state.discs);
   }
 }
 
-export default App;
+ReactDOM.render(<Collection/>, document.getElementById("root"));
+export default Collection;
