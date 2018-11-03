@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import logo from './logo.svg';
 import './App.css';
 import *as DiscData from './data';
 
@@ -8,7 +7,6 @@ class Disc extends Component {
   render() {
     return (
       <div className="Disc">
-        {/* <img src={logo} className="Disc-cover" alt="disc cover" /> */}
         <h2 className="Disc-title">{this.props.title}</h2>
         <ul className="Disc-info">
           <li className="Disc-type">Type: {this.props.type}</li>
