@@ -6,14 +6,16 @@ import *as DiscData from './data';
 class Disc extends Component {
   render() {
     return (
-      <div className="Disc">
-        <h2 className="Disc-title">{this.props.title}</h2>
-        <ul className="Disc-info">
-          <li className="Disc-type">Type: {this.props.type}</li>
-          <li className="Disc-year">Year: {this.props.year}</li>
-          <li className="Disc-genre">Genre: {this.props.genre}</li>
-          <li className="Disc-rating">Rating: {this.props.rating}</li>
-        </ul>
+      <div className="Disc card text-white bg-primary mb-3">
+        <div className="card-header"><h2 className="Disc-title card-title">{this.props.title}</h2></div>
+        <div className="card-body">
+          <ul className="Disc-info card-text">
+            <li className="Disc-type">Type: {this.props.type}</li>
+            <li className="Disc-year">Year: {this.props.year}</li>
+            <li className="Disc-genre">Genre: {this.props.genre}</li>
+            <li className="Disc-rating">Rating: {this.props.rating}</li>
+          </ul>
+        </div>
       </div>
     );
   }
@@ -35,29 +37,35 @@ class Collection extends React.Component {
 
   render() {
     return (
-      <div className="Collection">
+      <div className="Collection navbar functions">
+      <h1>Tasha's Disc Collection</h1>
       <form>
+        <label><h4>Sort by:</h4></label>
         <select value={this.state.sortBy} onChange={this.sort}>
-          <option value="title">title</option>
-          <option value="year">year</option>
-          <option value="genre">genre</option>
-          <option value="rating">rating</option>
-          <option value="type">disc type</option>
+          <option value="title">Title</option>
+          <option value="year">Year</option>
+          <option value="genre">Genre</option>
+          <option value="rating">Rating</option>
+          <option value="type">Disc Type</option>
         </select>
 
-        <p>ADD DISC</p>
-        <label>Title: <input type="text" name="title" onChange={e => this.setState({ title: e.target.value})}></input></label>
-        <label>Disc Type: 
-          <select value="DVD" name="type" onChange={e => this.setState({ type: e.target.value})}>
-            <option value="DVD">DVD</option>
-            <option value="Blu-Ray">Blu-Ray</option>
-            <option value="CD">CD</option>
-          </select>
-        </label>
-        <label>Year: <input type="text" name="year" onChange={e => this.setState({ year: e.target.value})}></input></label>
-        <label>Genre: <input type="text" name="genre" onChange={e => this.setState({ genre: e.target.value})}></input></label>
-        <label>Rating: <input type="text" name="rating" onChange={e => this.setState({ rating: e.target.value})}></input></label>
-        <input type="button" value="Add Disc" onClick={this.addDisc}/>
+        <div className="add-disc card text-white bg-secondary mb-3">
+          <div className="card-header"><h4>Add Disc</h4></div>
+          <div className="card-body">
+            <label>Title: <input type="text" name="title" onChange={e => this.setState({ title: e.target.value})}></input></label><br/>
+            <label>Disc Type: 
+              <select value="DVD" name="type" onChange={e => this.setState({ type: e.target.value})}>
+                <option value="DVD">DVD</option>
+                <option value="Blu-Ray">Blu-Ray</option>
+                <option value="CD">CD</option>
+              </select>
+            </label><br/>
+            <label>Year: <input type="text" name="year" onChange={e => this.setState({ year: e.target.value})}></input></label><br/>
+            <label>Genre: <input type="text" name="genre" onChange={e => this.setState({ genre: e.target.value})}></input></label><br/>
+            <label>Rating: <input type="text" name="rating" onChange={e => this.setState({ rating: e.target.value})}></input></label><br/>
+            <input type="button" className="btn btn-primary" value="Add Disc" onClick={this.addDisc}/>
+          </div>
+        </div>
       </form>
         {this.state.discs.map((disc) =>
             this.renderDisc(disc)
