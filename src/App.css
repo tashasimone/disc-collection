@@ -2,6 +2,18 @@
 @import url(https://bootswatch.com/4/litera/_bootswatch.scss);
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
+.accordion {
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+.active, .accordion:hover {
+  background-color: #ccc;
+}
 body {
   font-family: 'Montserrat';
 }
@@ -38,30 +50,12 @@ input, select {
 nav {
   margin-bottom: 20px;
 }
+.panel {
+  padding: 7px 18px;
+  display: none;
+  overflow: hidden;
+}
 ul {
   list-style: none;
   padding: 0;
-}
-
-.accordion {
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  text-align: left;
-  border: none;
-  outline: none;
-  transition: 0.4s;
-}
-
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.active, .accordion:hover {
-  background-color: #ccc;
-}
-
-/* Style the accordion panel. Note: hidden by default */
-.panel {
-  padding: 7px 18px;
-  background-color: ;
-  display: none;
-  overflow: hidden;
 }
