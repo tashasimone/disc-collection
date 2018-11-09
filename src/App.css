@@ -1,23 +1,67 @@
 @import url(https://bootswatch.com/4/litera/bootstrap.min.css);
 @import url(https://bootswatch.com/4/litera/_bootswatch.scss);
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 
-.add-disc {
+body {
+  font-family: 'Montserrat';
 }
 .card {
-  max-width: 20rem;
-  min-width: 20rem;
+  width: 20rem;
+  margin-top: 10px;
+  margin-bottom: 0 !important;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 20rem);
+  justify-content: center;
+  grid-gap: 20px;
+}
+.disc-label {
+  display: inline-block;
+  clear: left;
+  width: 150px;
+  text-align: left;
 }
 .functions {
   margin-bottom: 20px;
   
 }
-h2 {
+h1 {
   font-size: 1.6rem;
 }
+h2 {
+  font-size: 1.4rem;
+}
 input, select {
-  margin-left: 10px;
+  display: inline-block;
+}
+nav {
+  margin-bottom: 20px;
 }
 ul {
   list-style: none;
   padding: 0;
+}
+
+.accordion {
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+  padding: 7px 18px;
+  background-color: ;
+  display: none;
+  overflow: hidden;
 }

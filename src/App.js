@@ -37,10 +37,11 @@ class Collection extends React.Component {
 
   render() {
     return (
-      <div className="Collection navbar functions">
-      <h1>Tasha's Disc Collection</h1>
-      <form>
-        <label><h4>Sort by:</h4></label>
+      <div className="Collection functions">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+      <h1 className="navbar-nav mr-auto">Tasha's Disc Collection</h1>
+      <form className="sort-by form-inline my-2 my-lg-0">
+        <label><h2>Sort by: </h2></label>
         <select value={this.state.sortBy} onChange={this.sort}>
           <option value="title">Title</option>
           <option value="year">Year</option>
@@ -48,21 +49,24 @@ class Collection extends React.Component {
           <option value="rating">Rating</option>
           <option value="type">Disc Type</option>
         </select>
-
-        <div className="add-disc card text-white bg-secondary mb-3">
-          <div className="card-header"><h4>Add Disc</h4></div>
-          <div className="card-body">
-            <label>Title: <input type="text" name="title" onChange={e => this.setState({ title: e.target.value})}></input></label><br/>
-            <label>Disc Type: 
+      </form>
+      </nav>
+      <div className="cards">
+      <form>
+        <div className="add-disc card text-white bg-secondary">
+          <div className="card-header accordion"><h2>Add Disc</h2></div>
+          <div className="card-body panel bg-secondary">
+            <label className="disc-label">Title: <input type="text" name="title" onChange={e => this.setState({ title: e.target.value})}></input></label><br/>
+            <label className="disc-label">Disc Type: 
               <select value="DVD" name="type" onChange={e => this.setState({ type: e.target.value})}>
                 <option value="DVD">DVD</option>
                 <option value="Blu-Ray">Blu-Ray</option>
                 <option value="CD">CD</option>
               </select>
             </label><br/>
-            <label>Year: <input type="text" name="year" onChange={e => this.setState({ year: e.target.value})}></input></label><br/>
-            <label>Genre: <input type="text" name="genre" onChange={e => this.setState({ genre: e.target.value})}></input></label><br/>
-            <label>Rating: <input type="text" name="rating" onChange={e => this.setState({ rating: e.target.value})}></input></label><br/>
+            <label className="disc-label">Year: <input type="text" name="year" onChange={e => this.setState({ year: e.target.value})}></input></label><br/>
+            <label className="disc-label">Genre: <input type="text" name="genre" onChange={e => this.setState({ genre: e.target.value})}></input></label><br/>
+            <label className="disc-label">Rating: <input type="text" name="rating" onChange={e => this.setState({ rating: e.target.value})}></input></label><br/>
             <input type="button" className="btn btn-primary" value="Add Disc" onClick={this.addDisc}/>
           </div>
         </div>
@@ -70,6 +74,7 @@ class Collection extends React.Component {
         {this.state.discs.map((disc) =>
             this.renderDisc(disc)
         )}
+        </div>
       </div>
     );
   }
@@ -104,4 +109,23 @@ class Collection extends React.Component {
 }
 
 ReactDOM.render(<Collection/>, document.getElementById("root"));
+//accordion effect for add disc
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+        /* Toggle between adding and removing the "active" class,
+        to highlight the button that controls the panel */
+        this.classList.toggle("active");
+
+        /* Toggle between hiding and showing the active panel */
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+            panel.style.display = "none";
+        } else {
+            panel.style.display = "block";
+        }
+    });
+}
 export default Collection;
